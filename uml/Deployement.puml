@@ -1,0 +1,39 @@
+@startuml
+frame AuthenticationAPI {
+    database "Authentication" as AuthDB {
+        [User]
+        [Role]
+        [Permission]
+    }
+
+    artifact AuthSpringBoot
+}
+
+frame LibraryAPI {
+    database "Library" as LibDB {
+        [Book]
+        [Author]
+        [Publisher]
+        [State]
+        [Borrowing]
+    }
+
+    artifact LibSpringBoot
+}
+    artifact NodeJSBE
+artifact AngularFE
+
+
+LibDB ---> LibSpringBoot
+LibDB <--- LibSpringBoot
+AuthDB ---> AuthSpringBoot
+AuthDB <--- AuthSpringBoot
+
+LibraryAPI ----> NodeJSBE
+LibraryAPI <---- NodeJSBE
+AuthenticationAPI ----> NodeJSBE
+AuthenticationAPI <---- NodeJSBE
+
+AngularFE <- NodeJSBE
+AngularFE -> NodeJSBE
+@enduml

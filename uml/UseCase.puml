@@ -1,0 +1,28 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+actor Utilisateur as user
+actor Agent as agt
+actor Bibliothecaire as biblio
+actor Admin as admin
+
+user <|-up- agt
+agt <|-up- biblio
+biblio <|-up- admin
+
+usecase "emprunter un livre" as BaseAction
+usecase "créer un emprunt" as CreateBorrowing
+usecase "créer un livre" as CreateBook
+usecase "créer un auteur" as CreateAuthor
+usecase "supprimer un livre" as DeleteBook
+usecase "surppimer un auteur" as DeleteAuthor
+
+
+user -right-> BaseAction
+agt -> CreateBorrowing
+biblio -> CreateBook
+biblio -> CreateAuthor
+biblio -> DeleteBook
+biblio -> DeleteAuthor
+
+@enduml

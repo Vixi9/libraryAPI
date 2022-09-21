@@ -1,0 +1,41 @@
+@startuml
+class Author {
+    - uuidAuthor: uuid
+    - firstname: String
+    - lastname: String
+}
+
+class Book {
+    - uuidBook: uuid
+    - title: String
+    - dateReleased: Date
+
+}
+
+enum State {
+    AVAILABLE
+    BORROWED
+    UNAVAILABLE
+}
+
+
+class Publisher {
+    - uuidPublisher: uuid
+    - name: String
+}
+
+class Borrowing {
+    - uuidBorrowing: uuid
+    - borrowingDate: Date
+    - returnDate: Date
+    - duration: Duration
+    - uuidUser: uuid
+    - uuidEmployee: uuid
+}
+
+
+Author - Book: -author[]
+Book - Publisher: -publisher
+Book -- State: -state
+Book -- Borrowing: -book
+@enduml
