@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.Duration;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -22,11 +23,12 @@ public class Borrowing {
     @OneToOne
     private Book book;
 
-
     private UUID uuidUser;
     private UUID uuidEmployee;
 
     private Duration duration;
+
+    private Date borrowingDate;
 
     public UUID getId() {
         return id;
@@ -66,5 +68,13 @@ public class Borrowing {
 
     public void setDuration(Duration duration) {
         this.duration = duration;
+    }
+
+    public Date getBorrowingDate() {
+        return borrowingDate;
+    }
+
+    public void setBorrowingDate(Date borrowingDate) {
+        this.borrowingDate = borrowingDate;
     }
 }

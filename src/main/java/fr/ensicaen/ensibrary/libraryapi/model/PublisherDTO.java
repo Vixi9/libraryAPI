@@ -19,7 +19,7 @@ public class PublisherDTO {
     }
 
 
-    Publisher toEntity() {
+    public Publisher toEntity() {
         Publisher publisher = new Publisher();
         publisher.setId(this.id);
         publisher.setName(this.name);

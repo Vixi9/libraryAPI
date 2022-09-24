@@ -4,7 +4,6 @@ import fr.ensicaen.ensibrary.libraryapi.entity.Author;
 import fr.ensicaen.ensibrary.libraryapi.entity.Book;
 import fr.ensicaen.ensibrary.libraryapi.entity.Publisher;
 
-import javax.persistence.OneToOne;
 import java.util.Date;
 import java.util.UUID;
 
@@ -46,7 +45,7 @@ public class BookDTO {
         return dateReleased;
     }
 
-    Book toEntity() {
+    public Book toEntity() {
         Book book = new Book();
         book.setAuthor(this.author);
         book.setDateReleased(this.dateReleased);
