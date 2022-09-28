@@ -10,7 +10,7 @@ import java.util.UUID;
 public class BorrowingDTO {
 
     private UUID id;
-    private Book book;
+    private UUID bookId;
 
     private UUID uuidUser;
 
@@ -24,8 +24,8 @@ public class BorrowingDTO {
         return id;
     }
 
-    public Book getBook() {
-        return book;
+    public UUID getBookId() {
+        return bookId;
     }
 
     public UUID getUuidUser() {
@@ -46,7 +46,6 @@ public class BorrowingDTO {
 
     public Borrowing toEntity() {
         Borrowing borrowing = new Borrowing();
-        borrowing.setBook(this.book);
         borrowing.setDuration(this.duration);
         borrowing.setId(this.id);
         borrowing.setUuidEmployee(this.uuidEmployee);

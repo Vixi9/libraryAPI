@@ -2,12 +2,15 @@ package fr.ensicaen.ensibrary.libraryapi.service;
 
 
 import fr.ensicaen.ensibrary.libraryapi.entity.Borrowing;
+import fr.ensicaen.ensibrary.libraryapi.exception.BookNotFoundException;
 import fr.ensicaen.ensibrary.libraryapi.exception.BorrowingNotFoundException;
 import fr.ensicaen.ensibrary.libraryapi.model.BorrowingDTO;
+import fr.ensicaen.ensibrary.libraryapi.repository.BookRepository;
 import fr.ensicaen.ensibrary.libraryapi.repository.BorrowingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
@@ -15,10 +18,12 @@ public class BorrowingService {
 
 
     private final BorrowingRepository borrowingRepository;
+    private final BookRepository bookRepository;
 
 
-    BorrowingService(BorrowingRepository borrowingRepository) {
+    BorrowingService(BorrowingRepository borrowingRepository, BookRepository bookRepository) {
         this.borrowingRepository = borrowingRepository;
+        this.bookRepository = bookRepository;
     }
 
 
@@ -37,9 +42,9 @@ public class BorrowingService {
 
 
     @Transactional
-    public Borrowing update(UUID id, BorrowingDTO borrowing) throws BorrowingNotFoundException {
+    public Borrowing update(UUID id, BorrowingDTO borrowing) throws BorrowingNotFoundException, BookNotFoundException {
         Borrowing newBorrowing = borrowingRepository.findById(id).orElseThrow(() -> new BorrowingNotFoundException(id));
-        newBorrowing.setBook(borrowing.getBook());
+        newBorrowing.setBook(bookRepository.findById(borrowing.getBookId()).orElseThrow(() -> new BookNotFoundException(borrowing.getBookId())));
         newBorrowing.setDuration(borrowing.getDuration());
         newBorrowing.setId(borrowing.getId());
         newBorrowing.setBorrowingDate(borrowing.getBorrowingDate());
@@ -50,9 +55,15 @@ public class BorrowingService {
 
 
     @Transactional
-    public Borrowing add(BorrowingDTO borrowing) {
+    public Borrowing add(BorrowingDTO borrowing) throws BookNotFoundException {
+        Borrowing newBorrowing = borrowing.toEntity();
+        newBorrowing.setBook(bookRepository.findById(borrowing.getBookId()).orElseThrow(() -> new BookNotFoundException(borrowing.getBookId())));
         return borrowingRepository.save(borrowing.toEntity());
     }
 
+
+    public Collection<Borrowing> getAll() {
+        return borrowingRepository.findAll();
+    }
 
 }

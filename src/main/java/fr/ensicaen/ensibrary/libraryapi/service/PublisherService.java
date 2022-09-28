@@ -7,6 +7,7 @@ import fr.ensicaen.ensibrary.libraryapi.repository.PublisherRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.UUID;
 
 @Service
@@ -46,5 +47,9 @@ public class PublisherService {
         return publisherRepository.save(publisher.toEntity());
     }
 
+
+    public Collection<Publisher> getAll() {
+        return publisherRepository.findAll();
+    }
 
 }

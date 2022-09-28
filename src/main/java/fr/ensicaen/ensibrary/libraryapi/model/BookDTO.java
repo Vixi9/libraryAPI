@@ -9,10 +9,13 @@ import java.util.UUID;
 
 public class BookDTO {
 
-    private UUID id;
-    private Author author;
 
-    private Publisher publisher;
+
+    private UUID id;
+
+    private UUID authorId;
+
+    private UUID publisherId;
 
     private State state;
 
@@ -25,12 +28,12 @@ public class BookDTO {
         return id;
     }
 
-    public Author getAuthor() {
-        return author;
+    public UUID getAuthorId() {
+        return authorId;
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public UUID getPublisherId() {
+        return publisherId;
     }
 
     public State getState() {
@@ -47,10 +50,8 @@ public class BookDTO {
 
     public Book toEntity() {
         Book book = new Book();
-        book.setAuthor(this.author);
         book.setDateReleased(this.dateReleased);
         book.setId(this.id);
-        book.setPublisher(this.publisher);
         book.setState(this.state);
         book.setTitle(this.title);
         return book;
