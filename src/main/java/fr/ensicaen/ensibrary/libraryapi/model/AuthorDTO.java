@@ -24,10 +24,10 @@ public class AuthorDTO {
     }
 
     public Author toEntity() {
-     Author author = new Author();
-     author.setFirstName(this.firstName);
-     author.setLastName(this.lastName);
-     author.setId(this.id);
-     return author;
+        Author author = new Author();
+        author.setFirstName(this.firstName);
+        author.setLastName(this.lastName);
+        author.setId(this.id);
+        return author;
     }
 }

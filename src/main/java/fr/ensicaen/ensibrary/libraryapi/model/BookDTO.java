@@ -1,14 +1,11 @@
 package fr.ensicaen.ensibrary.libraryapi.model;
 
-import fr.ensicaen.ensibrary.libraryapi.entity.Author;
 import fr.ensicaen.ensibrary.libraryapi.entity.Book;
-import fr.ensicaen.ensibrary.libraryapi.entity.Publisher;
 
 import java.util.Date;
 import java.util.UUID;
 
 public class BookDTO {
-
 
 
     private UUID id;

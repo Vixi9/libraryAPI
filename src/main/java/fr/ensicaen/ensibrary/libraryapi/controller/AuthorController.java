@@ -36,7 +36,7 @@ public class AuthorController {
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Author updateAuthor(@PathVariable String id,@RequestBody AuthorDTO authorDTO) throws AuthorNotFoundException {
+    public Author updateAuthor(@PathVariable String id, @RequestBody AuthorDTO authorDTO) throws AuthorNotFoundException {
         return authorService.update(UUID.fromString(id), authorDTO);
     }
 
