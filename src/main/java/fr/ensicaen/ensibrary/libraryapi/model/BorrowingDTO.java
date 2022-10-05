@@ -1,6 +1,5 @@
 package fr.ensicaen.ensibrary.libraryapi.model;
 
-import fr.ensicaen.ensibrary.libraryapi.entity.Book;
 import fr.ensicaen.ensibrary.libraryapi.entity.Borrowing;
 
 import java.time.Duration;

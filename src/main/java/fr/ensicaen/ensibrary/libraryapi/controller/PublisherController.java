@@ -22,7 +22,7 @@ public class PublisherController {
 
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Collection<Publisher> getPublishers() {
-       return publisherService.getAll();
+        return publisherService.getAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
