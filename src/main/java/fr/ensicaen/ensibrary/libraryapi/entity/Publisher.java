@@ -17,7 +17,7 @@ public class Publisher {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(updatable = false, nullable = false, length = 36)
-    @org.hibernate.annotations.Type(type="org.hibernate.type.UUIDCharType")
+    @org.hibernate.annotations.Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
 
