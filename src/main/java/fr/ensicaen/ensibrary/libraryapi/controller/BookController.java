@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.UUID;
 
-@RestController("/books")
+@RestController
+@RequestMapping(value = "books")
 public class BookController {
 
     private final BookService bookService;

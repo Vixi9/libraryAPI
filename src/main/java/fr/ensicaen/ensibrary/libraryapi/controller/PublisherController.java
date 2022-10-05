@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.UUID;
 
-@RestController("/publishers")
+@RestController
+@RequestMapping(value = "publishers")
 public class PublisherController {
 
     private final PublisherService publisherService;

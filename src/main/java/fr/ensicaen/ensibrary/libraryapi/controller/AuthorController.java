@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 import java.util.UUID;
 
-@RestController("/authors")
+@RestController
+@RequestMapping(value = "authors")
 public class AuthorController {
 
     private final AuthorService authorService;
