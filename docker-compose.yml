@@ -1,0 +1,46 @@
+services:
+  #Database
+  api-auth-db:
+    image: mysql:latest
+    container_name: api-auth-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=toto
+      - MYSQL_DATABASE=ensibrary_auth
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+    volumes:
+      - api-auth-db:/var/lib/mysql
+
+  #Authentication API
+  api-auth:
+    image: libraryauthapi:latest
+    container_name: api-auth
+    build: https://github.com/Vixi9/libraryAuthApi.git
+    ports:
+      - "9000:9000"
+    volumes:
+      - .m2:/root/.m2
+    depends_on:
+      api-auth-db:
+        condition: service_healthy
+
+  #Books API
+  api:
+    image: libraryapi:latest
+    container_name: api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .m2:/root/.m2
+    depends_on:
+      - api-auth
+
+volumes:
+  api-auth-db:
