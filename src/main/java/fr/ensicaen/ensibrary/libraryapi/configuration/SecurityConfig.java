@@ -17,7 +17,9 @@ public class SecurityConfig extends GlobalMethodSecurityConfiguration {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable();
+        http.authorizeRequests(authorizeRequests ->
+                authorizeRequests.anyRequest().authenticated()
+        ).cors().and().csrf().disable();
         return http.build();
     }
 }
