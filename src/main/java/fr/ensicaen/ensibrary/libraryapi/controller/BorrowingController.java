@@ -6,6 +6,7 @@ import fr.ensicaen.ensibrary.libraryapi.exception.BorrowingNotFoundException;
 import fr.ensicaen.ensibrary.libraryapi.model.BorrowingDTO;
 import fr.ensicaen.ensibrary.libraryapi.service.BorrowingService;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -13,6 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "borrowings")
+@Secured({"ROLE_AGENT", "ROLE_LIBRARIAN", "ROLE_ADMIN"})
 public class BorrowingController {
 
     private final BorrowingService borrowingService;

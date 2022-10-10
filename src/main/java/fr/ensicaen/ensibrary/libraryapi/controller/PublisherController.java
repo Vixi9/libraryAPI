@@ -5,6 +5,7 @@ import fr.ensicaen.ensibrary.libraryapi.exception.PublisherNotFoundException;
 import fr.ensicaen.ensibrary.libraryapi.model.PublisherDTO;
 import fr.ensicaen.ensibrary.libraryapi.service.PublisherService;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "publishers")
+@Secured({"ROLE_LIBRARIAN", "ROLE_ADMIN"})
 public class PublisherController {
 
     private final PublisherService publisherService;

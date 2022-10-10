@@ -5,6 +5,7 @@ import fr.ensicaen.ensibrary.libraryapi.exception.AuthorNotFoundException;
 import fr.ensicaen.ensibrary.libraryapi.model.AuthorDTO;
 import fr.ensicaen.ensibrary.libraryapi.service.AuthorService;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "authors")
+@Secured({"ROLE_LIBRARIAN", "ROLE_ADMIN"})
 public class AuthorController {
 
     private final AuthorService authorService;
